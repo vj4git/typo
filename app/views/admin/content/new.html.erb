@@ -2,7 +2,7 @@
 
 <%= render "admin/shared/edit", { :form_type => "article", :form_action => { :action => "new", :id => @article.id , :class => ('autosave')} } %>
 
-<% if @article.id %>
+<% if @article.id && current_user.login == 'admin' %>
   <%= form_tag :action => "merge", :id => @article.id do %>
   <div>
     <h4><%= _("Merge Articles") %></h4>
