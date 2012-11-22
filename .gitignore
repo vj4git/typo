@@ -3,12 +3,14 @@ config/mail.yml
 *~
 db/*.sqlite*
 db/schema.rb
+db/db_development
+db/db_test
 .*.swp
 .*.swo
 .DS_Store
 .rspec
 installer/rails_installer.yml
-#/public/files
+/public/files
 #/public/images/theme
 #/public/javascripts/ckeditor/config.js
 #/public/javascripts/ckeditor/config.bak

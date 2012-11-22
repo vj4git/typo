@@ -416,6 +416,49 @@ class Article < Content
     user.admin? || user_id == user.id
   end
 
+  def merge_with(other_article_id)
+      article2 = Article.find_by_id(other_article_id)
+      if !article2
+         return
+      end
+      #move the article_tags from article2
+      arttag2 = article2.tags
+      arttag2.each do |c|
+         c.article_id=self.id
+         c.save!
+      end
+      #move the categorizations from article2
+      cat2 = article2.categorizations
+      cat2.each do |c|
+         c.article_id=self.id
+         c.save!
+      end
+      #move the feedback/comments from article2
+      comment2 = article2.feedback
+      comment2.each do |c|
+         c.article_id=self.id
+         c.save!
+      end
+      #move the pings from article2
+      ping2 = article2.pings
+      ping2.each do |c|
+         c.article_id=self.id
+         c.save!
+      end
+      #move the resources from article2
+      ping2 = article2.resources
+      ping2.each do |c|
+         c.article_id=self.id
+         c.save!
+      end
+      # now merge the article2 body with article, then delete article2
+      self.body=self.body + "\n" + article2.body
+      if self.save && Article.destroy(other_article_id)
+         return self
+      end
+      return
+  end
+
   protected
 
   def set_published_at
@@ -466,4 +509,5 @@ class Article < Content
     to = to - 1 # pull off 1 second so we don't overlap onto the next day
     return from..to
   end
+
 end

@@ -630,5 +630,17 @@ describe Article do
     end
 
   end
+
+  describe "merging articles" do
+    it "should merge target article to the current" do
+       pending "to merge target article to the current"
+    end
+    it "should have the current title" do
+       pending "should have the current title"
+    end
+    it "should contain all the comments" do
+       pending "should contain all the comments"
+    end
+  end
 end
 

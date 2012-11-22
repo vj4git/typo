@@ -7,3 +7,4 @@
     <% for resource in @resources - @article.resources %>
       <%= link_to_remote "+ #{resource.filename}", :url => { :action => "resource_add", :id => @article.id, :resource_id => resource.id}, :update => 'resources' %><br/>
     <% end %>
+
